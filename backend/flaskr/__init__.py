@@ -122,12 +122,14 @@ def create_app(test_config=None):
     @app.route("/questions", methods=["POST"])
     def create_question():
         body = request.get_json()
-        new_question= body['question']
+        new_question = body['question']
         new_answer = body['answer']
         new_difficulty = body['difficulty']
         new_category = body['category']
         try:
-            question = Question(question=new_question,answer=new_answer,difficulty=new_difficulty,category=new_category)
+            question = Question(question=new_question,
+                                answer=new_answer, difficulty=new_difficulty,
+                                category=new_category)
             question.insert()
 
             selection = Question.query.order_by(Question.id).all()
